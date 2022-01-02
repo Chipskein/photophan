@@ -20,10 +20,11 @@ const Home = () => {
     useEffect(() => {
         scrollRef.current.scrollTo(0,0)
     }, [])
+    console.log(userInfo)
     return (
         <div className="flex bg-gray-50 md:flex-row flex-col h-screen transaction-height duration-75 ease-out ">
             <div className="hidden md:flex h-screen flex-initial">
-                <Sidebar user={user ? user:false}/>
+                <Sidebar user={userInfo}/>
             </div>
             <div className="flex md:hidden flex-row">
                 <div className="p-2 w-full flex flex-row justify-between items-center shadow-md">
@@ -31,8 +32,8 @@ const Home = () => {
                     <Link to="/">
                         <img src={logo} alt="logo" className="w-28"/>
                     </Link>
-                    <Link to={`user-profile/${user?._id}`}>
-                        <img src={user?.userimage} alt="logo" className="w-14 rounded-full"/>
+                    <Link to={`user-profile/${userInfo?.googleId}`}>
+                        <img src={userInfo?.imageUrl} alt="logo" className="w-14 rounded-full object-cover"/>
                     </Link>
                 </div>
                 {toggle && (
@@ -40,14 +41,14 @@ const Home = () => {
                     <div className="absolute w-full flex justify-end items-center p-2">
                         <AiFillCloseCircle fontSize={30} className="cursor-pointer" onClick={()=>{settoggle(false)}}/>
                     </div>
-                    <Sidebar user={user ? user:false} closeToggle={settoggle}/>
+                    <Sidebar user={userInfo} closeToggle={settoggle}/>
                 </div>
                 )}
             </div>
 
             <div className="pb-2 flex-1 h-screen overflow-y-scroll" ref={scrollRef}>
                 <Routes>
-                    <Route path="/user-profile/:userId" element={<User/>}></Route>
+                    <Route path="/user-profile/:userid" element={<User/>}></Route>
                     <Route path="/*" element={<Pins user={user && user}/>}></Route>
                 </Routes>
             </div>

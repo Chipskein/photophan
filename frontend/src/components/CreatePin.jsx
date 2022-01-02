@@ -11,10 +11,10 @@ function CreatePin({user}) {
     const [destination, setDestination] = useState('')
     const [loading, setloading] = useState(false)
     const [fields, setFields] = useState(false)
-    const [category, setCategory] = useState(false)
+    const [category, setCategory] = useState(null)
     const [imageasset, setimageasset] = useState(null)
     const [wrongimagetype, setWrongimagetype] = useState(false)
-    
+    const userinfo=user.user;
     const navigate=useNavigate();
     const uploadImage=(e)=>{
         const {name,type}=e.target.files[0]
@@ -41,6 +41,36 @@ function CreatePin({user}) {
             })
         }
         else setWrongimagetype(true)
+    }
+    const savePin=()=>{
+        if(title && about && destination && imageasset?._id && category){
+            const doc={
+                _type:"pin",
+                title,
+                about,
+                destination,
+                pinimage:{
+                    _type:"image",
+                    asset:{
+                        _type:"reference",
+                        _ref:imageasset?._id
+                    }
+                },
+                userid:userinfo._id,
+                postedby:{
+                    _type:"postedby",
+                    _ref:userinfo._id
+                },
+                category
+            }
+            console.log(doc)
+            client.create(doc)
+            .then(()=>{navigate("/")})
+        }
+        else {
+            setFields(true)
+            setTimeout(()=>setFields(false),2000)
+        }
     }
     return (
         <div className="flex flex-col justify-center items-center mt-5 lg:h-4">
@@ -78,8 +108,27 @@ function CreatePin({user}) {
                 </div>
                 
                 <div className="flex flex-1 flex-col gap-6 lg:pl-5 mt-5 w-full ">
-                    <input type="text" value={title} onChange={(e)=>setTitle(e.target.value)} placeholder="Adicione seu titulo" className="outline-none text-2x1 sm:text-3x1 font-bold border-b-2 border-gray-200 p-2"/>
-
+                <input type="text" value={title} onChange={(e)=>setTitle(e.target.value)} placeholder="Adicione seu titulo" className="outline-none text-2x1 sm:text-3x1 font-bold border-b-2 border-gray-200 p-2"/>
+                <input type="text" value={about} onChange={(e)=>setAbout(e.target.value)} placeholder="Adicione uma descrição" className="outline-none text-2x1 sm:text-lg  border-b-2 border-gray-200 p-2"/>
+                <input type="text" value={destination} onChange={(e)=>setDestination(e.target.value)} placeholder="Adicione um url" className="outline-none text-2x1 sm:text-lg  border-b-2 border-gray-200 p-2"/>
+                <div className="flex flex-col">
+                    <div>
+                        <p className="mb-2 font-semibold text-lg sm:text-xl">Escolha uma categoria</p>
+                        <select className="outline-none w-4/5 text-base border-b-2 bor-der-gray-200 p-2 rounded-md cursor-pointer" onChange={(e)=>setCategory(e.target.value)}>
+                            <option value="Other" className="bg-white">Selecione uma categoria</option>
+                            {categories.map((category)=><option value={category.name} className="text-base border-0 outline-none capitalize bg-white text-black">{category.name}</option>)}
+                        </select>
+                    </div>
+                    <div className="flex justify-end items-end mt-5">
+                        <button
+                            type="button"
+                            onClick={savePin}
+                            className="bg-green-500 text-white font-bold p-2 rounded-full w-28 outline-none"
+                        >
+                            Create Pin
+                        </button>
+                    </div>
+                </div>            
                 </div>
             </div>
         </div>
