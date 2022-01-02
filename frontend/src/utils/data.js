@@ -9,7 +9,7 @@ export const searchQuery=(searchTerm)=>{
             asset->{url}
         },
         _id,
-        detination,
+        destination,
         postedby->{
             _id,username,userimage
         },
@@ -29,7 +29,7 @@ export const feedQuery=`*[_type=="pin" ]| order(_createAt desc)
             asset->{url}
         },
         _id,
-        detination,
+        destination,
         postedby->{
             _id,username,userimage
         },
@@ -41,3 +41,10 @@ export const feedQuery=`*[_type=="pin" ]| order(_createAt desc)
         }
     }
 `;
+export const fetchUser=()=>{
+    const userInfo= localStorage.getItem("user")!=='undefined' ? JSON.parse(localStorage.getItem("user")):localStorage.clear()
+    return userInfo;
+}
+export const deletePin=(id)=>{
+    
+}

@@ -5,10 +5,29 @@ import {v4 as uuidv4} from 'uuid'
 import {MdDownloadForOffline} from 'react-icons/md' 
 import {AiTwotoneDelete} from 'react-icons/ai' 
 import {BsFillArrowRightCircleFill} from 'react-icons/bs' 
-function Pin({pin:{postedby,pinimage,_id,destination}}) {
+import { fetchUser,deletePin } from '../utils/data'
+function Pin({pin:{postedby,pinimage,_id,destination,save}}) {
     const navigate=useNavigate();
+    const user=fetchUser();
+    const alreadysaved = !!(save?.filter((item)=>item.postedby._id ===user.googleId))?.length
+    const savePin=(id)=>{
+        client
+        .patch(id)
+        .setIfMissing({save:[]})
+        .insert('after','save[-1]',[{
+            _key:uuidv4(),
+            userid:user.googleId,
+            postedby:{
+                _type:"postedby",
+                _ref:user.googleId
+            }
+        }])
+        .commit()
+        .then(()=>{
+            window.location.reload();
+        })
+    }
     const [postHover, setPostHover] = useState(false)
-    const [savingPost, setsavingPost] = useState(false)
     return (
         <div className="m-2">
             <div
@@ -31,10 +50,43 @@ function Pin({pin:{postedby,pinimage,_id,destination}}) {
                             <MdDownloadForOffline/>
                             </a>
                         </div>
+                        {alreadysaved ? 
+                        (<button type="button" className="bg-green-500 opacity-70 text-white hover:opaciry-100 font-bold text-base px-5 py-1 rounded-3x1 hover:shadow-md outlined-none">{save?.length} Saved</button>):
+                        (<button className="bg-orange-500 opacity-70 text-white hover:opaciry-100 font-bold text-base px-5 py-1 rounded-3x1 hover:shadow-md outlined-none"
+                            onClick={(e)=>{
+                                e.stopPropagation()
+                                savePin(_id);
+                            }}>Save!</button>)
+                        }
+                    </div>
+                    <div className="flex justify-between items-center gap-2 w-full">
+                        {destination &&(
+                            <a href={destination}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="bg-white flex items-center gap-2 text-black font-bold p-2 pl-4 pr-4 rounded-full opacity-70 hover:opacity-100 hover:shadow-md"
+                            >
+                                <BsFillArrowRightCircleFill/>
+                                {destination.length > 20 ? destination.slice(8,20):destination.slice(8)}
+                            </a>
+                        )}
+                        {postedby?._id ===user.googleId && (
+                            <button
+                                type="button"
+                                className="bg-red-500 opacity-70 text-white hover:opacity-100 font-bold text-base px-5 py-5 rounded-full hover:shadow-md outlined-none"
+                                onClick={(e)=>{e.stopPropagation();deletePin(_id);window.location.reload()}}
+                            >
+                                <AiTwotoneDelete/>
+                            </button>
+                        )}
                     </div>
                 </div>
             )}
             </div>
+            <Link to={`user-profile/${postedby?._id}`} className="flex gap-2 mt-2 items-center">
+                <img src={postedby?.userimage} alt="user-profile" className="w-8 h-8 rounded-full object-cover"/>
+                <p className="font-semibold capitalize">{postedby?.username}</p>
+            </Link>
         </div>
     )
 }
