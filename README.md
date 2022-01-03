@@ -3,7 +3,7 @@
 
 ## 📄 Descrição
 phothopan é uma rede social para o compartilhamento e download de imagens,foi desenvolvida utilizando React(Frontend),Sanity(Backend) e TailWindCSS(Estilização).
-Só é possivel logar e registrar utilizando um conta google.
+Só é possivel logar e registrar utilizando uma conta google.
 
 ## 🛠 Tecnologias
 As seguintes ferramentas foram usadas na construção do projeto:
