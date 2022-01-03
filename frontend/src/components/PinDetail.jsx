@@ -97,8 +97,8 @@ function PinDetail({user}) {
                         ))}
                     </div>
                     <div className="flex flex-wrap mt-6 gap-3">
-                        <Link to={`/user-profile/${pindetail?.postedby?._id}`}>
-                            <img src={pindetail?.postedby?.userimage} alt="user-profile" className="w-10 h-10 rounded-full cursor-pointer"/>
+                        <Link to={`/user-profile/${user?.user?._id}`}>
+                            <img src={user?.user?.userimage} alt="user-profile" className="w-10 h-10 rounded-full cursor-pointer"/>
                         </Link>
                             <input type="text" className="flex-1 border-gray-100 outline-none border-2 p-2 rounded-2x1 focus:border-gray-300" placeholder="Add Cmt" value={comment} onChange={(e)=>setComment(e.target.value)}/>
                             <button type="button" className="bg-red-500 text-white rounded-full px-6 py-2 font-semibold text-base outline-none" onClick={addcomment}>
