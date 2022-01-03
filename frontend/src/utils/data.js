@@ -99,3 +99,116 @@ export const fetchUser=()=>{
 export const deletePin=(id)=>{
     
 }
+export const PinDetailQuery=(id)=>{
+  const query=`*[_type == "pin" && _id == '${id}'] 
+  {
+    pinimage{
+      asset->{
+        url
+      }
+    },
+    _id,
+    title, 
+    about,
+    category,
+    destination,
+    postedby->{
+      _id,
+      username,
+      userimage
+    },
+   save[]{
+      postedby->{
+        _id,
+        username,
+        userimage
+      },
+    },
+    comments[]{
+      comment,
+      _key,
+      postedby->{
+        _id,
+        username,
+        userimage
+      },
+    }
+  }`;
+  return query;
+}
+export const pindetailMoreQuery=(pin)=>{
+  const query = `*[_type == "pin" && category == '${pin.category}' && _id != '${pin._id}' ]{
+    pinimage{
+      asset->{
+        url
+      }
+    },
+    _id,
+    destination,
+    postedby->{
+      _id,
+      username,
+      userimage
+    },
+    save[]{
+      _key,
+      postedby->{
+        _id,
+        username,
+        userimage
+      },
+    },
+  }`;
+  return query;
+}
+
+
+export const userPinQuery = (userId) => {
+  const query = `*[ _type == 'pin' && userid == '${userId}'] | order(_createdAt desc){
+    pinimage{
+      asset->{
+        url
+      }
+    },
+    _id,
+    destination,
+    postedby->{
+      _id,
+      username,
+      userimage
+    },
+    save[]{
+      postedby->{
+        _id,
+        username,
+        userimage
+      },
+    },
+  }`;
+  return query;
+};
+
+export const savedPinQuery = (userId) => {
+  const query = `*[_type == 'pin' && '${userId}' in save[].userid ] | order(_createdAt desc) {
+    pinimage{
+      asset->{
+        url
+      }
+    },
+    _id,
+    destination,
+    postedby->{
+      _id,
+      username,
+      userimage
+    },
+    save[]{
+      postedby->{
+        _id,
+        username,
+        userimage
+      },
+    },
+  }`;
+  return query;
+};
