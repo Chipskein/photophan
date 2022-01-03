@@ -37,7 +37,7 @@ const Login = () => {
                     <div className='p-5'>
                         <img src={logo} width='100px' alt='logo'/>
                     </div>
-                    
+                    {/* FIXME
                     <div className='shadow-2x1'>
                         <button
                             type="button"
@@ -46,6 +46,7 @@ const Login = () => {
                             Registrar-se
                         </button>
                     </div>
+                    */}
                     <div className='shadow-2x1'>
                         <GoogleLogin
                             clientId={process.env.REACT_APP_GOOGLE_API_TOKEN}
