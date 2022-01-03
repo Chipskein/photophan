@@ -73,13 +73,13 @@ function CreatePin({user}) {
         }
     }
     return (
-        <div className="flex flex-col justify-center items-center mt-5 lg:h-4">
+        <div className="flex flex-col justify-center items-center mt-5 ">
             {fields && (
                 <p className="text-red-500 mb-5 text-xl transition-all duration-150 ease-in">Preencha todos os campos</p>
             )}
-            <div className="flex lg:flex-row flex-col justify-center items-center bg-white lg:p-5 p-3 lg:w-4 w-full">
-                <div className="bg-secondaryColor p-3 flex flex-0.7 w-full">
-                    <div className="flex justify-center items-center flex-col border-2 border-dotted border-gray-300 p-3 w-full h-420">
+            <div className="flex lg:flex-row flex-col justify-center items-center bg-secondaryColor lg:p-5 p-3  w-full">
+                <div className="bg-white p-3 flex flex-0.7 w-full">
+                    <div className="flex justify-center items-center flex-col border-2 border-solid border-gray-500 p-3 w-full h-420">
                         {loading && <Spinner/>}
                         {wrongimagetype && <p>Tipo Errado</p>}
                         {!imageasset ? (
@@ -113,7 +113,7 @@ function CreatePin({user}) {
                 <input type="text" value={destination} onChange={(e)=>setDestination(e.target.value)} placeholder="Adicione um url" className="outline-none text-2x1 sm:text-lg  border-b-2 border-gray-200 p-2"/>
                 <div className="flex flex-col">
                     <div>
-                        <p className="mb-2 font-semibold text-lg sm:text-xl">Escolha uma categoria</p>
+                        <p className="mb-2 font-semibold text-lg sm:text-xl text-white">Escolha uma categoria</p>
                         <select className="outline-none w-4/5 text-base border-b-2 bor-der-gray-200 p-2 rounded-md cursor-pointer" onChange={(e)=>setCategory(e.target.value)}>
                             <option value="Other" className="bg-white">Selecione uma categoria</option>
                             {categories.map((category)=><option value={category.name} className="text-base border-0 outline-none capitalize bg-white text-black">{category.name}</option>)}

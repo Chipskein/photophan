@@ -85,7 +85,7 @@ function Pin({pin:{postedby,pinimage,_id,destination,save}}) {
             </div>
             <Link to={`user-profile/${postedby?._id}`} className="flex gap-2 mt-2 items-center">
                 <img src={postedby?.userimage} alt="user-profile" className="w-8 h-8 rounded-full object-cover"/>
-                <p className="font-semibold capitalize">{postedby?.username}</p>
+                <p className="font-semibold capitalize text-primary">{postedby?.username}</p>
             </Link>
         </div>
     )

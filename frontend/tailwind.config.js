@@ -1,6 +1,5 @@
 module.exports = {
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
-  darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       margin: {
@@ -8,6 +7,8 @@ module.exports = {
       },
       width: {
         190: '190px',
+        223:'223px',
+        230:'230px',
         275: '275px',
         300: '300px',
         340: '340px',
@@ -32,6 +33,7 @@ module.exports = {
       },
       maxHeight: {
         370: '370px',
+        5000: '5000px',
       },
       minWidth: {
         210: '210px',
@@ -45,9 +47,11 @@ module.exports = {
         navColor: '#BEBEBE',
       },
       backgroundColor: {
-        mainColor: '#FBF8F9',
-        secondaryColor: '#F0F0F0',
-        blackOverlay: 'rgba(0, 0 ,0 ,0.7)',
+        mainColor: '#44403C',
+        secondaryColor: '#0369A1',
+        terciaryColor: '##337ea7',
+        secondaryColorOverlay: 'rgba(3,105,161,0.8)',
+        blackOverlay: 'rgba(rgb(0,0,0,0.7)',
       },
       keyframes: {
         'slide-in': {
