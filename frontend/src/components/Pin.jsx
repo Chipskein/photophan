@@ -9,17 +9,17 @@ import { fetchUser,deletePin } from '../utils/data'
 function Pin({pin:{postedby,pinimage,_id,destination,save}}) {
     const navigate=useNavigate();
     const user=fetchUser();
-    const alreadysaved = !!(save?.filter((item)=>item.postedby._id ===user.googleId))?.length
+    const alreadysaved = !!(save?.filter((item)=>item.postedby._id ===user?.googleId))?.length
     const savePin=(id)=>{
         client
         .patch(id)
         .setIfMissing({save:[]})
         .insert('after','save[-1]',[{
             _key:uuidv4(),
-            userid:user.googleId,
+            userid:user?.googleId,
             postedby:{
                 _type:"postedby",
-                _ref:user.googleId
+                _ref:user?.googleId
             }
         }])
         .commit()
@@ -73,7 +73,7 @@ function Pin({pin:{postedby,pinimage,_id,destination,save}}) {
                                 {destination.length > 20 ? destination.slice(8,20):destination.slice(8)}
                             </a>
                         )}
-                        {postedby?._id ===user.googleId && (
+                        {postedby?._id ===user?.googleId && (
                             <button
                                 type="button"
                                 className="bg-red-500 opacity-70 text-white hover:opacity-100 font-bold text-base px-5 py-5 rounded-full hover:shadow-md outlined-none"
