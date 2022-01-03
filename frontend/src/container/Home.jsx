@@ -2,7 +2,7 @@ import React from 'react';
 import {useState,useRef,useEffect} from 'react';
 import {HiMenu} from 'react-icons/hi';
 import {AiFillCloseCircle} from 'react-icons/ai';
-import {Link,Route,Routes} from 'react-router-dom'
+import {Link,Route,Routes,useNavigate} from 'react-router-dom'
 import { Sidebar,User } from '../components';
 import { client } from '../client';
 import logo from '../assets/logo.png';
@@ -13,6 +13,10 @@ const Home = () => {
     const [user, setUser] = useState(null)
     const userInfo= localStorage.getItem("user")!=='undefined' ? JSON.parse(localStorage.getItem("user")):localStorage.clear()
     const scrollRef=useRef(null);
+    const navigate=useNavigate();
+    if(!userInfo){
+        navigate("login")
+    }
     useEffect(() => {
         const query=getUser(userInfo?.googleId)
         client.fetch(query).then((data)=>{setUser(data[0])});
