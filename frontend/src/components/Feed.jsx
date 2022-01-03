@@ -7,11 +7,12 @@ import Spinner from './Spinner'
 function Feed() {
     const [loading, setLoading] = useState(false)
     const [pins, setPins] = useState(null)
-    const {categoryId}=useParams();
+    const {category}=useParams();
+    console.log(category);
     useEffect(()=>{
         setLoading(true)
-        if(categoryId){
-            const query=searchQuery(categoryId);
+        if(category){
+            const query=searchQuery(category);
             client.fetch(query).then((data)=>{
                 setPins(data)
                 setLoading(false)
@@ -23,7 +24,7 @@ function Feed() {
                 setLoading(false)
             })
         }
-    },[categoryId])
+    },[category])
     if(loading) return <Spinner message="Carregando..." />
     return (
         <div>
