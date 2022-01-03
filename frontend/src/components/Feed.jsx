@@ -8,7 +8,6 @@ function Feed() {
     const [loading, setLoading] = useState(false)
     const [pins, setPins] = useState(null)
     const {category}=useParams();
-    console.log(category);
     useEffect(()=>{
         setLoading(true)
         if(category){
