@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import {AiOutlineLogout} from 'react-icons/ai'
+import {MdOutlineLogout} from 'react-icons/md'
 import {useParams,useNavigate} from 'react-router-dom'
 import GoogleLogin, { GoogleLogout } from 'react-google-login'
 import {client} from '../client'
@@ -14,8 +15,8 @@ function User() {
     const [text, setText] = useState('Created')
     const [activatebtn, setactivatebtn] = useState('Created')
     const randomImage="https://source.unsplash.com/1600x900/?nature"
-    const activatebtnstyle="bg-red-500 text-white font-bold p-2 rounded-full w-20 outline-none"
-    const notactivatebtnstyle="bg-primary mr-4 text-black font-bold p-2 rounded-full w-20 outline-none"
+    const activatebtnstyle="bg-secondaryColor text-white font-bold p-2 rounded-full w-20 outline-none"
+    const notactivatebtnstyle="bg-primary mr-4 text-white font-bold p-2 rounded-full w-20 outline-none"
     const Logout=()=>{
         localStorage.clear();
         navigate("/login")
@@ -55,9 +56,9 @@ function User() {
                 <div className="relative flex flex-col mb-7">
                     <div className="flex flex-col justify-center items-center">
                         <img src={randomImage} alt="" className="w-full h-370 2x1:h-510 shadow-lg object-cover"/>
-                        <img src={user?.userimage} className="rounded-full w-20 h-20 -mt-10 object-cover" alt="" />
-                        <h1 className="font-bold text-3x1 text-center mt-3">{user?.username}</h1>
-                        <div className="absolute top-0 z01 right-2">
+                        <img src={user?.userimage} className="rounded-full w-28 h-28 -mt-10 object-cover" alt="" />
+                        <h1 className="font-bold text-3x1 text-center mb-5 text-white">{user?.username}</h1>
+                        <div className="absolute top-2 z-0 right-2">
                             {userid===user._id &&(
                                 <GoogleLogout
                                 clientId={process.env.REACT_APP_GOOGLE_API_TOKEN}
@@ -68,7 +69,7 @@ function User() {
                                         onClick={renderProps.onClick}
                                         disabled={renderProps.disabled}
                                     >
-                                        <AiOutlineLogout color={'red'} fontSize={40}/> 
+                                        <MdOutlineLogout color={'#000000'} fontSize={40}/> 
                                     </button>
                                 )}
                                 onLogoutSuccess={Logout}

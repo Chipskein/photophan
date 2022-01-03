@@ -33,7 +33,7 @@ function Pin({pin:{postedby,pinimage,_id,destination,save}}) {
             <div
                 onMouseEnter={()=>{setPostHover(true)}}
                 onMouseLeave={()=>{setPostHover(false)}}
-                onClick={()=>navigate(`pin-detail/${_id}`)}
+                onClick={()=>navigate(`/pin-detail/${_id}`)}
                 className="relative cursor-pointer w-auto hover:shadow-lg rounded-lg overflow-hidden transition-all duration-500 ease-in-out"    
             >
             <img className="rounded-lg w-full" alt="user-post" src={urlFor(pinimage).width(250).url()} alt="" />
@@ -83,7 +83,7 @@ function Pin({pin:{postedby,pinimage,_id,destination,save}}) {
                 </div>
             )}
             </div>
-            <Link to={`user-profile/${postedby?._id}`} className="flex gap-2 mt-2 items-center">
+            <Link to={`/user-profile/${postedby?._id}`} className="flex gap-2 mt-2 items-center">
                 <img src={postedby?.userimage} alt="user-profile" className="w-8 h-8 rounded-full object-cover"/>
                 <p className="font-semibold capitalize text-primary">{postedby?.username}</p>
             </Link>
