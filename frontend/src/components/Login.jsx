@@ -8,19 +8,21 @@ import {client} from '../client';
 const Login = () => {
     const navigate=useNavigate();
     const responseGoogle=(response)=>{
-        localStorage.setItem("user",JSON.stringify(response?.profileObj));
-        const { name , googleId, imageUrl}=response?.profileObj;
-        const doc={
-            _id:googleId,
-            _type:"user",
-            username:name,
-            userimage:imageUrl
-        };
-        client.createIfNotExists(doc).then(()=>{
-            navigate("/",{replace:true})
-        })
+        if(response.profileObj){
+            localStorage.setItem("user",JSON.stringify(response?.profileObj));
+            const { name , googleId, imageUrl}=response?.profileObj;
+            const doc={
+                _id:googleId,
+                _type:"user",
+                username:name,
+                userimage:imageUrl
+            };
+            client.createIfNotExists(doc).then(()=>{
+                navigate("/",{replace:true})
+            })
+        }
     }
-    if(localStorage.getItem("user")=='undefined') navigate("/");
+    if(localStorage.getItem("user")=='undefined') navigate("/login");
     return (
         <div className="flex justify-start items-center flex-col h-screen">
             <div className='relative w-full h-full'>
@@ -62,7 +64,8 @@ const Login = () => {
                             )}
                             onSuccess={responseGoogle}
                             onFailure={responseGoogle}
-                            cookiePolicy="single_host_origin"
+                            cookiePolicy={"single_host_origin"}
+                            isSignedIn={true}
                         />
                     </div>
                 </div>

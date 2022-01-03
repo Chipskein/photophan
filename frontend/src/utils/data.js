@@ -83,9 +83,7 @@ export const fetchUser=()=>{
     const userInfo= localStorage.getItem("user")!=='undefined' ? JSON.parse(localStorage.getItem("user")):localStorage.clear()
     return userInfo;
 }
-export const deletePin=(id)=>{
-    
-}
+
 export const PinDetailQuery=(id)=>{
   const query=`*[_type == "pin" && _id == '${id}'] 
   {
@@ -148,7 +146,6 @@ export const pindetailMoreQuery=(pin)=>{
   }`;
   return query;
 }
-
 
 export const userPinQuery = (userId) => {
   const query = `*[ _type == 'pin' && userid == '${userId}'] | order(_createdAt desc){
