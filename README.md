@@ -1,21 +1,19 @@
 # [Photophan](https://photophan.netlify.app)
 ![logo](/frontend/public/logo192.png)
 
-<p align="center">
- <a href="#objetivo">Objetivo</a> •
- <a href="#roadmap">Roadmap</a> • 
- <a href="#tecnologias">Tecnologias</a> • 
- <a href="#contribuicao">Contribuição</a> • 
- <a href="#licenc-a">Licença</a> • 
- <a href="#autor">Autor</a>
-</p>
+## 📄 Descrição
+phothopan é uma rede social para o compartilhamento e download de imagens,foi desenvolvida utilizando React(Frontend),Sanity(Backend) e TailWindCSS(Estilização) 
 
-## Descrição
-##### photophan é uma rede social feita com React e utiliza o sanity.io no backend 
-## Screenshots
+## 📷 Screenshots
+
 ![login](/screenshots/login.png)
 
 ![home](/screenshots/home.png)
 
 ![user](/screenshots/user.png)
 
+## 🛠 Tecnologias
+As seguintes ferramentas foram usadas na construção do projeto:
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Sanity.io](https://www.sanity.io/)
+- [React](https://pt-br.reactjs.org/)
