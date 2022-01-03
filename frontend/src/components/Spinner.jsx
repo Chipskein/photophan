@@ -5,8 +5,9 @@ function Spinner({message}) {
     return (
         <div className="flex flex-col justify-center items-center w-full h-full">
             <Loader 
-                type="Circles" 
+                type="TailSpin" 
                 color="#00BFFF"
+                secondaryColor="#ffffff"
                 height={50}
                 width={200}
                 className="m-5"

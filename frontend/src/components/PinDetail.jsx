@@ -84,7 +84,7 @@ function PinDetail({user}) {
                         <img src={pindetail?.postedby?.userimage} alt="user-profile" className="w-8 h-8 rounded-full object-cover"/>
                         <p className="font-semibold capitalize">{pindetail?.postedby?.username}</p>
                     </Link>
-                    <h2 className="mt-5 text-2x1">Comments</h2>
+                    <h2 className="mt-5 text-2x1">Comentarios</h2>
                     <div className="max-h-370 overflow-y-auto">
                         {pindetail?.comments?.map((comment)=>(
                             <div className="flex gap-2 mt-5 items-center bg-white rounded-lg" key={comment?._id}>
@@ -100,21 +100,23 @@ function PinDetail({user}) {
                         <Link to={`/user-profile/${user?.user?._id}`}>
                             <img src={user?.user?.userimage} alt="user-profile" className="w-10 h-10 rounded-full cursor-pointer"/>
                         </Link>
-                            <input type="text" className="flex-1 border-gray-100 outline-none border-2 p-2 rounded-2x1 focus:border-gray-300" placeholder="Add Cmt" value={comment} onChange={(e)=>setComment(e.target.value)}/>
-                            <button type="button" className="bg-red-500 text-white rounded-full px-6 py-2 font-semibold text-base outline-none" onClick={addcomment}>
-                            {addingcomment ? "Posting...":"Post"}
+                            <input type="text" className="flex-1 border-gray-100 outline-none border-2 p-2 rounded-2x1 focus:border-gray-300" placeholder="Adicione um comentário" value={comment} onChange={(e)=>setComment(e.target.value)}/>
+                            <button type="button" className="bg-secondaryColor text-white rounded-full px-6 py-2 font-semibold text-base outline-none" onClick={addcomment}>
+                            {addingcomment ? "Comentando...":"Comentar"}
                             </button>
                     </div>
                 </div>
             </div>
             {pins?.length>0 ? (
                 <>
-                    <h2 className="text-center font-bold text-2x mt-8 mb-4">
+                    <div className="bg-secondaryColor">
+                    <h2 className="text-center text-white font-bold text-2x mt-8 mb-4">
                         Mais Pins
                     </h2>
                     <MasonryLayout pins={pins}/>
+                    </div>
                 </>
-            ):(<Spinner message="More pins"/>)}
+            ):(<Spinner message="Carregando Pins"/>)}
             </>
         )
     }
