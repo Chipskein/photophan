@@ -27,6 +27,9 @@ function Pin({pin:{postedby,pinimage,_id,destination,save}}) {
             window.location.reload();
         })
     }
+    const deletePin=(id)=>{
+        client.delete(id).then(()=>window.location.reload())
+    }
     const [postHover, setPostHover] = useState(false)
     return (
         <div className="m-2">
@@ -74,7 +77,10 @@ function Pin({pin:{postedby,pinimage,_id,destination,save}}) {
                             <button
                                 type="button"
                                 className="bg-red-500 opacity-70 text-white hover:opacity-100 font-bold text-base px-5 py-5 rounded-full hover:shadow-md outlined-none"
-                                onClick={(e)=>{e.stopPropagation();deletePin(_id);window.location.reload()}}
+                                onClick={(e)=>{
+                                    e.stopPropagation();
+                                    deletePin(_id);
+                                }}
                             >
                                 <AiTwotoneDelete/>
                             </button>

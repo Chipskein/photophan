@@ -7,12 +7,21 @@ function Search({searchTerm,setSearch}) {
     const [loading, setLoading] = useState(true)
     const [pins, setPins] = useState(null)
     useEffect(() => {
-        setLoading(true)
-        const query=searchQuery(searchTerm);
-        client.fetch(query).then((data)=>{
-            setPins(data)
-            setLoading(false)
-        })
+        if(searchTerm){
+            setLoading(true)
+            const query=searchQuery(searchTerm);
+            client.fetch(query).then((data)=>{
+                setPins(data)
+                setLoading(false)
+            })
+        }
+        else{
+            setLoading(true)
+            client.fetch(feedQuery).then((data)=>{
+                setPins(data)
+                setLoading(false)
+            })
+        }
     }, [searchTerm])
     
     if(loading) return <Spinner message={`Procurando Pins relacionados com ${searchTerm}`}/>
