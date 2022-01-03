@@ -12,7 +12,7 @@ function Pins(user) {
             <div className="h-full">
                 <Routes>
                     <Route path="/" element={<Feed/>}></Route>
-                    <Route path="/category/:category:id" element={<Feed/>}></Route>
+                    <Route path="/category/:category" element={<Feed/>}></Route>
                     <Route path="/pin-detail/:pinId" element={<PinDetail user={user}/>}></Route>
                     <Route path="/create-pin" element={<CreatePin user={user}/>}></Route>
                     <Route path="/search" element={<Search searchTerm={searchTerm} setSearch={setSearch}/>}></Route>

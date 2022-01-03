@@ -16,7 +16,6 @@ const Login = () => {
             username:name,
             userimage:imageUrl
         };
-        console.log(doc);
         client.createIfNotExists(doc).then(()=>{
             navigate("/",{replace:true})
         })
@@ -42,7 +41,7 @@ const Login = () => {
                     <div className='shadow-2x1'>
                         <button
                             type="button"
-                            className='bg-white flex justify-center items-center p-3 rounded-lg cursor-pointer outline-none mb-2 w-223'
+                            className='bg-mainColor text-white font-extrabold flex justify-center items-center p-3 rounded-lg cursor-pointer outline-none mb-2 w-223'
                         >
                             Registrar-se
                         </button>

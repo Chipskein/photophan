@@ -26,7 +26,7 @@ function Sidebar({user,closeToggle}) {
                     <RiHomeFill color={"#ffff"}/>
                     Home
                     </NavLink>
-                    <h3 className="mt-2 px-5 text-primary font-bold 2x1:text-x1">Categories</h3>
+                    <h3 className="mt-2 px-5 text-primary font-bold 2x1:text-x1">Categorias</h3>
                 {categories.map((category)=>(
                     <NavLink
                         to={`/category/${category.name}`}

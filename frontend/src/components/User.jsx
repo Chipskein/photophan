@@ -27,7 +27,6 @@ function User() {
             client.fetch(query)
             .then((data)=>{
                 setuser(data[0])
-                console.log(user)
             })
         };
     }, [userid])
@@ -35,14 +34,12 @@ function User() {
         if(text=='Created'){
             const createdquery=userPinQuery(userid);
             client.fetch(createdquery).then((data)=>{
-                console.log(data)
                 setpins(data)
             })
         }
         else{
             const savedquery=savedPinQuery(userid);
             client.fetch(savedquery).then((data)=>{
-                console.log(data)
                 setpins(data)
             })
         }

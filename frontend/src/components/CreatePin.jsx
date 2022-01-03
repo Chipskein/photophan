@@ -63,7 +63,6 @@ function CreatePin({user}) {
                 },
                 category
             }
-            console.log(doc)
             client.create(doc)
             .then(()=>{navigate("/")})
         }
